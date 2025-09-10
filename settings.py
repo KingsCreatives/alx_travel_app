@@ -17,7 +17,9 @@ import os
 env = environ.Env()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
+# environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
+environ.Env.read_env(os.path.join(Path(__file__).resolve().parent, ".env"))
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -48,7 +50,7 @@ INSTALLED_APPS = [
     'drf_yasg',
 
     # your app
-    'alx_travel_app.listings',
+    'listings',
 ]
 
 MIDDLEWARE = [    
@@ -62,7 +64,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'alx_travel_app.urls'
+ROOT_URLCONF = 'urls'
 
 TEMPLATES = [
     {
@@ -79,18 +81,11 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'alx_travel_app.wsgi.application'
+WSGI_APPLICATION = 'wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 
 DATABASES = {
     'default': {
@@ -102,8 +97,6 @@ DATABASES = {
         'PORT': env("DB_PORT"),
     }
 }
-
-
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 
